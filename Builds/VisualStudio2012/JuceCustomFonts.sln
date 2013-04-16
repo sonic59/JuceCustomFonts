@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{BEA57629-01CD-B9DA-6EEE-8C0DBA9B4C9C}") = "JuceCustomFonts", "JuceCustomFonts.vcxproj", "{D09302A4-BE38-F6EB-56F3-BF3E9481452E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D09302A4-BE38-F6EB-56F3-BF3E9481452E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D09302A4-BE38-F6EB-56F3-BF3E9481452E}.Debug|Win32.Build.0 = Debug|Win32
+		{D09302A4-BE38-F6EB-56F3-BF3E9481452E}.Release|Win32.ActiveCfg = Release|Win32
+		{D09302A4-BE38-F6EB-56F3-BF3E9481452E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
