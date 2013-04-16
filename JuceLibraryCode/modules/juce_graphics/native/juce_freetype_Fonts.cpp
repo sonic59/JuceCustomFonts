@@ -80,6 +80,11 @@ public:
         findFontDirectories();
     }
 
+    FontFileIterator(const String& path)  : index (0)
+    {
+        fontDirs.add (path);
+    }
+
     bool next()
     {
         if (iter != nullptr)
@@ -117,29 +122,7 @@ public:
         : library (new FTLibWrapper())
     {
         FontFileIterator fontFileIterator;
-
-        while (fontFileIterator.next())
-        {
-            int faceIndex = 0;
-            int numFaces = 0;
-
-            do
-            {
-                FTFaceWrapper face (library, fontFileIterator.getFile(), faceIndex);
-
-                if (face.face != 0)
-                {
-                    if (faceIndex == 0)
-                        numFaces = face.face->num_faces;
-
-                    if ((face.face->face_flags & FT_FACE_FLAG_SCALABLE) != 0)
-                        faces.add (new KnownTypeface (fontFileIterator.getFile(), faceIndex, face));
-                }
-
-                ++faceIndex;
-            }
-            while (faceIndex < numFaces);
-        }
+        addFaces(fontFileIterator);
     }
 
     ~FTTypefaceList()
@@ -217,6 +200,12 @@ public:
         return s;
     }
 
+    void addFontsFromPath (const String& path)
+    {
+        FontFileIterator fontFileIterator (path);
+        addFaces(fontFileIterator);
+    }
+
     void getMonospacedNames (StringArray& monoSpaced) const
     {
         for (int i = 0; i < faces.size(); i++)
@@ -243,6 +232,32 @@ public:
 private:
     FTLibWrapper::Ptr library;
     OwnedArray<KnownTypeface> faces;
+
+    void addFaces(FontFileIterator& fontFileIterator)
+    {
+        while (fontFileIterator.next())
+        {
+            int faceIndex = 0;
+            int numFaces = 0;
+
+            do
+            {
+                FTFaceWrapper face (library, fontFileIterator.getFile(), faceIndex);
+
+                if (face.face != 0)
+                {
+                    if (faceIndex == 0)
+                        numFaces = face.face->num_faces;
+
+                    if ((face.face->face_flags & FT_FACE_FLAG_SCALABLE) != 0)
+                        faces.add (new KnownTypeface (fontFileIterator.getFile(), faceIndex, face));
+                }
+
+                ++faceIndex;
+            }
+            while (faceIndex < numFaces);
+        }
+    }
 
     const KnownTypeface* matchTypeface (const String& familyName, const String& style) const noexcept
     {

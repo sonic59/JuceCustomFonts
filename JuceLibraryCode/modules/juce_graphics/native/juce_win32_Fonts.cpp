@@ -158,6 +158,11 @@ StringArray Font::findAllTypefaceStyles (const String& family)
     return results;
 }
 
+void Font::addFontsFromPath (const String& path)
+{
+    // Not implemented on Windows
+}
+
 extern bool juce_isRunningInWine();
 
 struct DefaultFontNames

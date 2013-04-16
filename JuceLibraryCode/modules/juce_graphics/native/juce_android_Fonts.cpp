@@ -77,6 +77,11 @@ StringArray Font::findAllTypefaceStyles (const String& family)
     return FTTypefaceList::getInstance()->findAllTypefaceStyles (family);
 }
 
+void Font::addFontsFromPath (const String& path)
+{
+    FTTypefaceList::getInstance()->addFontsFromPath (path);
+}
+
 bool TextLayout::createNativeLayout (const AttributedString&)
 {
     return false;

@@ -416,6 +416,10 @@ public:
     */
     static void setFallbackFontStyle (const String& style);
 
+    /** Makes fonts in custom fonts files available for use.
+    */
+    static void addFontsFromPath (const String& path);
+
     //==============================================================================
     /** Creates a string to describe this font.
         The string will contain information to describe the font's typeface, size, and

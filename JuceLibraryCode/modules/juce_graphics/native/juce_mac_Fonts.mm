@@ -680,6 +680,11 @@ StringArray Font::findAllTypefaceStyles (const String& family)
     return results;
 }
 
+void Font::addFontsFromPath (const String& path)
+{
+    // Not implemented on OS X
+}
+
 #else
 
 //==============================================================================
@@ -1124,6 +1129,11 @@ StringArray Font::findAllTypefaceStyles (const String& family)
     }
 
     return results;
+}
+
+void Font::addFontsFromPath (const String& path)
+{
+    // Not implemented on OS X
 }
 
 #endif
